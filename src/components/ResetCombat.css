@@ -1,0 +1,10 @@
+.resetButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: red;
+  color:yellow;
+  border-radius: 15px;
+  
+  }

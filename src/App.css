@@ -1,0 +1,29 @@
+
+
+
+.background{
+background-color: #007193;
+  width:100%;
+height:1000px;
+border-radius: 15px;
+}
+.classInfo-position1{
+  position: absolute;
+  left:3.2%;
+  top: 25%}
+
+.classInfo-position2{
+  position: absolute;
+  right: 6.2%;
+  top: 25%;
+}
+.status-position {
+  position: absolute;
+  background-color: yellow;
+  width: 8%;
+  left: 50%;
+  bottom: 85%;
+  transform: translateX(-50%);
+  
+}
+ 

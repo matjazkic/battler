@@ -1,0 +1,13 @@
+.CombatAction {
+ position: absolute;
+
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%)
+}
+.ButtonPosition {
+  background-color: #4caf50; /* Green */
+  width: 150px;
+  height: 60px;
+  border-radius: 15px;
+}
