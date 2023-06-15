@@ -5,7 +5,7 @@ const ClassInfo = (props) => {
     return (<div className='class-info'> <p>{props.hero.name}</p>
   <table>
     <tr>
-      <th>Atribute</th>
+      <th>Attribute</th>
       <th>Value</th>
     </tr>
     <tr>
