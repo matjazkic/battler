@@ -1,0 +1,28 @@
+.outter-lifebar{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner-lifebar{
+ height: 100px;
+  width: 50px;
+  border: 1px solid #313131;
+  border-radius: 12px;
+  background-color: #bd1702;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  right: 35%;
+}
+
+.fill-lifebar{
+    background-color: #48cf0a;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease-out;
+  position: absolute;
+}

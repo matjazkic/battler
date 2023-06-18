@@ -5,6 +5,7 @@ import LifeCounterEnemy from "./components/LifeCounterEnemy";
 import CombatAction from "./components/CombatAction";
 import ResetCombat from "./components/ResetCombat";
 import ClassInfo from "./components/ClassInfo";
+import LifeBar from './components/LifeBar.js'
 
 function App() {
   const warrior = {
@@ -30,6 +31,7 @@ function App() {
   let randNum2 = Math.floor(Math.random() * 10) + 1;
   let rogueDamage = randNum2 + rogue.attack - warrior.defense;
   let warriorDamage = randNum1 + warrior.attack - rogue.defense;
+  let remaningLife1 = Math.floor(((lifePlayer1 / rogue.hp) * 100)) +'%';
 
   const combatHandler = () => {
     setLifePlayer1(lifePlayer1 - warriorDamage);
@@ -44,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <p className="background">
+        <LifeBar remaningLife1={remaningLife1} />
         <LifeCounter health={lifePlayer1} />
         <LifeCounterEnemy health={lifePlayer2} />
         <CombatAction combatHandler={combatHandler} />
