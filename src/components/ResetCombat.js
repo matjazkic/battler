@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import './ResetCombat.css'
-
+import "./ResetCombat.css";
 
 const ResetCombat = (props) => {
+  const [potionCharge, setPotionCharge] = useState(true);
 
-
-    return (
-      <div>
-        <button className="resetButton" onClick={props.resetCombatHandler}>
-          Reset Combat
+  return (
+    <div>
+      {potionCharge && potionCharge && (
+        <button
+          className="resetButton"
+          onClick={() => {
+            props.resetCombatHandler();
+            setPotionCharge(false);
+          }}
+        >
+          Heal for 30! Only once per game!
         </button>
-      </div>
-    );
+      )}
+    </div>
+  );
 };
 export default ResetCombat;
