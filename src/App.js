@@ -6,11 +6,13 @@ import CombatAction from "./components/CombatAction";
 import ResetCombat from "./components/ResetCombat";
 import ClassInfo from "./components/ClassInfo";
 import LifeBar from "./components/LifeBar.js";
+import WinMessage from "./components/WinMessage";
 
 export const lifeContext = createContext();
 export const combatReducer = (state, action) => {
   if (action.type === "DAMAGE") {
     state = state - action.payload;
+    console.log(state);
     return state;
   }
 
@@ -20,7 +22,9 @@ export const combatReducer = (state, action) => {
     return state;
   }
   if (action.type === "RESET") {
-    state = action.payload;
+    state = +action.payload;
+    console.log(action.payload);
+    return state;
   }
   /*
   if (action.type === "Fireball") {
@@ -44,7 +48,7 @@ function App() {
   const rogue = {
     name: "Rogue",
     hp: 150,
-    attack: 7,
+    attack: 6,
     defense: 3,
     equipment: "",
   };
@@ -66,13 +70,20 @@ function App() {
   }; */
 
   const combatHandler = () => {
+    if (lifePlayer1 < 0 || lifePlayer2 < 0) {
+      dispatch1({ type: "RESET", payload: rogue.hp });
+      dispatch2({ type: "RESET", payload: warrior.hp });
+      return;
+    }
     dispatch1({ type: "DAMAGE", payload: warriorDamage });
     dispatch2({ type: "DAMAGE", payload: rogueDamage });
+    return;
   };
 
-  const resetCombatHandler = () => {
+  const healCombatHandler = () => {
     dispatch1({ type: "HEAL" });
     dispatch2({ type: "HEAL" });
+    return lifePlayer1, lifePlayer2;
   };
 
   return (
@@ -80,29 +91,38 @@ function App() {
       value={{
         player1: [lifePlayer1, dispatch1],
         player2: [lifePlayer2, dispatch2],
+        rogue: rogue,
+        warrior: warrior,
       }}
     >
       <div className="App">
         <p className="background">
-          <LifeBar remaningLife1={remaningLife1} />
-          <LifeCounter lifePlayer1={lifePlayer1} />
-          <LifeCounterEnemy lifePlayer2={lifePlayer2} />
-          <CombatAction combatHandler={combatHandler} />
-          <ResetCombat resetCombatHandler={resetCombatHandler} />
-          <div className="classInfo-position1">
-            <ClassInfo hero={rogue} />
-          </div>
-          <div className="classInfo-position2">
-            <ClassInfo hero={warrior} />
-          </div>
-          {lifePlayer1 < rogue.hp && (
-            <div className="status-position">
-              <p>
-                {warrior.name} got hit for {rogueDamage}
-              </p>
-              <p>
-                {rogue.name} got hit for {warriorDamage}
-              </p>
+          {lifePlayer1 < 0 || lifePlayer2 < 0 ? (
+            <WinMessage />
+          ) : (
+            <div>
+              {" "}
+              <LifeBar remaningLife1={remaningLife1} />
+              <LifeCounter lifePlayer1={lifePlayer1} />
+              <LifeCounterEnemy lifePlayer2={lifePlayer2} />
+              <CombatAction combatHandler={combatHandler} />
+              <ResetCombat resetCombatHandler={healCombatHandler} />
+              <div className="classInfo-position1">
+                <ClassInfo hero={rogue} />
+              </div>
+              <div className="classInfo-position2">
+                <ClassInfo hero={warrior} />
+              </div>
+              {lifePlayer1 < rogue.hp && (
+                <div className="status-position">
+                  <p>
+                    {warrior.name} got hit for {rogueDamage}
+                  </p>
+                  <p>
+                    {rogue.name} got hit for {warriorDamage}
+                  </p>
+                </div>
+              )}{" "}
             </div>
           )}
         </p>

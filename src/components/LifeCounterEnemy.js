@@ -9,7 +9,7 @@ const LifeCounterEnemy = (props) => {
   return (
     <div>
       <div className="Player2Life">
-        <p>{props.lifePlayer2}</p>
+        <p>{lifePlayer2}</p>
       </div>
     </div>
   );

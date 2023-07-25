@@ -9,8 +9,7 @@ const LifeCounter = (props) => {
   return (
     <div>
       <div className="Player1Life">
-        {" "}
-        <p>{props.lifePlayer1}</p>
+        <p>{lifePlayer1}</p>
       </div>
     </div>
   );
